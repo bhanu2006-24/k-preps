@@ -1,8 +1,11 @@
-
 import { networkTheory } from './subjects/networkTheory';
 import { electronicDevices } from './subjects/electronicDevices';
 import { digitalElectronics } from './subjects/digitalElectronics';
 import { controlSystems } from './subjects/controlSystems';
+import { advanceMathematics } from './subjects/advanceMathematics';
+import { signalSystem } from './subjects/signalSystem';
+import { technicalCommunication } from './subjects/technicalCommunication';
+import { computerProgramming } from './subjects/computerProgramming';
 import { Resource, Flashcard } from '../types';
 
 // Modular Data Imports
@@ -17,8 +20,18 @@ import { deviceFlashcards } from './flashcards/deviceFlashcards';
 import { networkCheatsheets } from './cheatsheets/networkCheatsheets';
 import { deviceCheatsheets } from './cheatsheets/deviceCheatsheets';
 import { miscResources } from './miscResources';
+import { fileResources } from './fileResources';
 
-export const subjects = [networkTheory, electronicDevices, digitalElectronics, controlSystems];
+export const subjects = [
+  networkTheory, 
+  electronicDevices, 
+  digitalElectronics, 
+  controlSystems,
+  advanceMathematics,
+  signalSystem,
+  technicalCommunication,
+  computerProgramming
+];
 
 export const resources: Resource[] = [
   ...networkNotes, 
@@ -27,7 +40,8 @@ export const resources: Resource[] = [
   ...controlNotes,
   ...networkCheatsheets, 
   ...deviceCheatsheets, 
-  ...miscResources
+  ...miscResources,
+  ...fileResources
 ];
 export const flashcards: Flashcard[] = [...networkFlashcards, ...deviceFlashcards];
 export const questions = [...networkQuestions, ...deviceQuestions];

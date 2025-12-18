@@ -4,27 +4,15 @@ import { UserStats, DailyProgress } from '../types';
 const STORAGE_KEY = 'k_preps_user_stats';
 
 const getInitialStats = (): UserStats => {
-    const today = new Date();
-    const progress: DailyProgress[] = [];
-    
-    // Generate mock data for the last 6 days + today
-    for (let i = 6; i >= 0; i--) {
-        const d = new Date(today);
-        d.setDate(today.getDate() - i);
-        const dateStr = d.toISOString().split('T')[0];
-        // Random minutes between 20 and 120
-        const minutes = Math.floor(Math.random() * 100) + 20; 
-        progress.push({ date: dateStr, minutesSpent: minutes });
-    }
-
+    const today = new Date().toISOString().split('T')[0];
     return {
-        focusTimeMinutes: progress.reduce((acc, curr) => acc + curr.minutesSpent, 0),
-        streakDays: 3,
-        modulesCompleted: 18,
-        totalModules: 45,
-        globalRank: 42,
-        weeklyProgress: progress,
-        lastLoginDate: today.toISOString().split('T')[0]
+        focusTimeMinutes: 0,
+        streakDays: 0,
+        modulesCompleted: 0,
+        totalModules: 45, // This can remain as a target
+        globalRank: 0, // 0 indicates unranked
+        weeklyProgress: [],
+        lastLoginDate: today
     };
 };
 
