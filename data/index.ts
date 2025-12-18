@@ -21,8 +21,8 @@ import { networkCheatsheets } from './cheatsheets/networkCheatsheets';
 import { deviceCheatsheets } from './cheatsheets/deviceCheatsheets';
 import { miscResources } from './miscResources';
 import { fileResources } from './fileResources';
-import { mathQuestions, signalQuestions, programmingQuestions, commQuestions } from './questions/generatedQuestions';
-import { generatedFlashcards } from './flashcards/generatedFlashcards';
+import { mathQuestions, signalQuestions, digitalQuestions, devicesQuestions, networkQuestionsReal, commQuestions } from './questions/realQuestions';
+import { realFlashcards } from './flashcards/realFlashcards';
 
 export const subjects = [
   networkTheory, 
@@ -48,13 +48,15 @@ export const resources: Resource[] = [
 export const flashcards: Flashcard[] = [
     ...networkFlashcards, 
     ...deviceFlashcards,
-    ...generatedFlashcards
+    ...realFlashcards
 ];
 export const questions = [
     ...networkQuestions, 
     ...deviceQuestions,
     ...mathQuestions,
     ...signalQuestions,
-    ...programmingQuestions,
+    ...digitalQuestions,
+    ...devicesQuestions,
+    ...networkQuestionsReal,
     ...commQuestions
 ];

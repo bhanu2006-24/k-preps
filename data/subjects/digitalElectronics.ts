@@ -2,16 +2,16 @@
 import { Subject } from '../../types';
 
 export const digitalElectronics: Subject = {
-  id: 'digital-electronics',
-  code: '3EC4-08',
-  name: 'Digital Electronics',
-  description: 'Design and analysis of digital circuits, logic gates, and memory elements.',
+  id: 'digital-system-design',
+  code: '3EC4-04',
+  name: 'Digital System Design',
+  description: 'Analysis and design of digital systems, including combinational and sequential logic, semiconductor memories, and interfacing.',
   credits: 3,
   objectives: [
-    { id: 'CO-1', description: 'Understand Number Systems and Boolean Algebra simplification.' },
-    { id: 'CO-2', description: 'Design combinational circuits like Adders, Mux, and Decoders.' },
-    { id: 'CO-3', description: 'Analyze sequential circuits, Flip-Flops, and Counters.' },
-    { id: 'CO-4', description: 'Design Finite State Machines (FSM) and ASM charts.' },
-    { id: 'CO-5', description: 'Understand Logic Families (TTL, CMOS) and Memory devices.' },
+    { id: 'CO-1', description: 'Explain number systems and demonstrate their applications in digital electronics.' },
+    { id: 'CO-2', description: 'Simplify Boolean functions using Karnaugh Maps for optimized circuit design.' },
+    { id: 'CO-3', description: 'Design combinational and sequential circuits considering performance metrics.' },
+    { id: 'CO-4', description: 'Analyze the interfacing of digital and analog components using ADCs and DACs.' },
+    { id: 'CO-5', description: 'Design semiconductor memories and implement digital systems using PLDs and FPGAs.' },
   ]
 };

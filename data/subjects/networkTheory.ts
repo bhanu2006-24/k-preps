@@ -4,8 +4,8 @@ export const networkTheory: Subject = {
   id: 'network-theory',
   code: '3EC4-06',
   name: 'Network Theory',
-  description: 'Study of circuit analysis, theorems, and transient responses.',
-  credits: 4,
+  description: 'Analysis of electrical networks using standard circuit laws and theorems.',
+  credits: 3,
   objectives: [
     { id: 'CO-1', description: 'Apply basic circuit laws and theorems for network simplification.' },
     { id: 'CO-2', description: 'Utilize frequency-domain techniques in network analysis.' },

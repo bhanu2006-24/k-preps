@@ -4,8 +4,8 @@ export const electronicDevices: Subject = {
   id: 'electronic-devices',
   code: '3EC4-07',
   name: 'Electronics Devices',
-  description: 'Fundamentals of semiconductor physics and electronic components.',
-  credits: 4,
+  description: 'Understanding semiconductor physics and device characteristics.',
+  credits: 3,
   objectives: [
     { id: 'CO-1', description: 'Explain semiconductor physics of intrinsic and extrinsic materials.' },
     { id: 'CO-2', description: 'Describe the current-voltage characteristics of BJT and MOSFET.' },

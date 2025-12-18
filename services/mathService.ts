@@ -1,4 +1,3 @@
-
 /**
  * Processes a string and renders any LaTeX math found within $...$ (inline) 
  * or $$...$$ (block) delimiters using the globally available KaTeX library.

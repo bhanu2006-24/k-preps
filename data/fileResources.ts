@@ -16,12 +16,12 @@ export const fileResources: Resource[] = [
   { id: 'cp-lab', title: 'Computer Lab Manual', type: 'PDF', subjectId: 'computer-programming', url: '/files/Computer%20Programming%20LAB/Computer-lab-manual.docx', description: 'Comprehensive Lab Manual' },
 
   // --- Digital System Design (Digital Electronics) ---
-  { id: 'de-ref', title: '18EC34 - Hamsavahini Ref', type: 'PDF', subjectId: 'digital-electronics', url: '/files/Digital%20System%20Design/18EC34%20-%20Hamsavahini%20R.pdf', description: 'Reference Book / Notes' },
-  { id: 'de-lab-u1', title: 'Lab Unit 1', type: 'PDF', subjectId: 'digital-electronics', url: '/files/Digital%20System%20Design%20lab/Unit%201.pdf', description: 'Lab Notes Unit 1' },
-  { id: 'de-lab-u2', title: 'Lab Unit 2', type: 'PDF', subjectId: 'digital-electronics', url: '/files/Digital%20System%20Design%20lab/Unit%202.pdf', description: 'Lab Notes Unit 2' },
-  { id: 'de-lab-u3', title: 'Lab Unit 3', type: 'PDF', subjectId: 'digital-electronics', url: '/files/Digital%20System%20Design%20lab/Unit%3.pdf', description: 'Lab Notes Unit 3' },
-  { id: 'de-lab-u4', title: 'Lab Unit 4', type: 'PDF', subjectId: 'digital-electronics', url: '/files/Digital%20System%20Design%20lab/Unit%204.pdf', description: 'Lab Notes Unit 4' },
-  { id: 'de-lab-u5', title: 'Lab Unit 5', type: 'PDF', subjectId: 'digital-electronics', url: '/files/Digital%20System%20Design%20lab/Unit%205.pdf', description: 'Lab Notes Unit 5' },
+  { id: 'de-ref', title: '18EC34 - Hamsavahini Ref', type: 'PDF', subjectId: 'digital-system-design', url: '/files/Digital%20System%20Design/18EC34%20-%20Hamsavahini%20R.pdf', description: 'Reference Book / Notes' },
+  { id: 'de-lab-u1', title: 'Lab Unit 1', type: 'PDF', subjectId: 'digital-system-design', url: '/files/Digital%20System%20Design%20lab/Unit%201.pdf', description: 'Lab Notes Unit 1' },
+  { id: 'de-lab-u2', title: 'Lab Unit 2', type: 'PDF', subjectId: 'digital-system-design', url: '/files/Digital%20System%20Design%20lab/Unit%202.pdf', description: 'Lab Notes Unit 2' },
+  { id: 'de-lab-u3', title: 'Lab Unit 3', type: 'PDF', subjectId: 'digital-system-design', url: '/files/Digital%20System%20Design%20lab/Unit%3.pdf', description: 'Lab Notes Unit 3' },
+  { id: 'de-lab-u4', title: 'Lab Unit 4', type: 'PDF', subjectId: 'digital-system-design', url: '/files/Digital%20System%20Design%20lab/Unit%204.pdf', description: 'Lab Notes Unit 4' },
+  { id: 'de-lab-u5', title: 'Lab Unit 5', type: 'PDF', subjectId: 'digital-system-design', url: '/files/Digital%20System%20Design%20lab/Unit%205.pdf', description: 'Lab Notes Unit 5' },
 
   // --- Electronic Devices ---
   { id: 'ed-lec', title: 'EDC Lecture Notes', type: 'PDF', subjectId: 'electronic-devices', url: '/files/Electronic%20Devices/EDC%20Lecture%20Notes.pdf', description: 'Complete Lecture Notes' },
@@ -36,7 +36,6 @@ export const fileResources: Resource[] = [
   { id: 'nt-u3', title: 'Unit 3 Notes', type: 'PDF', subjectId: 'network-theory', url: '/files/Network%20Theory/Unit%203.docx', description: 'Unit 3 Word Document' },
   { id: 'nt-u4', title: 'Unit 4 Notes', type: 'PDF', subjectId: 'network-theory', url: '/files/Network%20Theory/Unit%204.docx', description: 'Unit 4 Word Document' },
   { id: 'nt-u5', title: 'Unit 5 Notes', type: 'PDF', subjectId: 'network-theory', url: '/files/Network%20Theory/Unit%205.ppt', description: 'Unit 5 Presentation' },
-  { id: 'nt-vid', title: 'Network Theory Video', type: 'Video', subjectId: 'network-theory', url: '/files/Network_Theory.mp4', description: 'Course Video Lecture' },
 
   // --- Signal & Systems ---
   { id: 'ss-u1', title: 'Unit 1 - Raj Kumar Jain', type: 'PDF', subjectId: 'signal-system', url: '/files/Signal%20System/S-S%20UNIT%201%20BY%20%20RAJ%20KUMAR%20JAIN.pdf', description: 'Unit 1 Detailed Notes' },

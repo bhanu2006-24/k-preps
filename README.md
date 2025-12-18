@@ -21,10 +21,10 @@ K-Preps is a comprehensive study platform designed to help students master their
 - **Smart Reader**: Built-in Markdown reader with table of contents and mathematical formula support.
 - **Diverse Formats**: dedicated support for PDFs, Mind Maps, Videos, and Interactive Notes.
 
-### 🤖 Smart Assistant
+### 🧠 Practice Arena
 
-- **AI Tutor**: Get instant answers and explanations for your doubts.
-- **Practice Arena**: Test your knowledge with tailored quizzes and flashcards.
+- **Interactive Quizzes**: Test your knowledge with tailored quizzes mapped to your syllabus.
+- **Smart Flashcards**: Review core concepts quickly.
 
 ## 🛠️ Tech Stack
 
@@ -49,14 +49,7 @@ K-Preps is a comprehensive study platform designed to help students master their
     npm install
     ```
 
-3.  **Setup Environment**
-    Create a `.env.local` file and add your Gemini API Key for AI features:
-
-    ```env
-    VITE_GEMINI_API_KEY=your_api_key_here
-    ```
-
-4.  **Run Development Server**
+3.  **Run Development Server**
     ```bash
     npm run dev
     ```
