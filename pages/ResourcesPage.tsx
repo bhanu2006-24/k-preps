@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Filter, FolderOpen, X, BookOpen, Layers, Printer, List, ArrowUp } from 'lucide-react';
+import { Search, Filter, FolderOpen, X, BookOpen, Layers, Printer, List, ArrowUp, ChevronDown, ChevronUp } from 'lucide-react';
 import { resources, subjects } from '../data/index';
 import { ResourceCard } from '../components/resources/ResourceCard';
 import { ResourceType, Resource } from '../types';
 import { processMathContent } from '../services/mathService';
 import { userService } from '../services/userService';
+import { PDFReader } from '../components/PDFReader';
 
 export const ResourcesPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -12,6 +13,7 @@ export const ResourcesPage: React.FC = () => {
   const [selectedModule, setSelectedModule] = useState<string>('all');
   const [selectedType, setSelectedType] = useState<ResourceType | 'All'>('All');
   const [readingResource, setReadingResource] = useState<Resource | null>(null);
+  const [isFiltersOpen, setIsFiltersOpen] = useState(true);
 
   const filteredResources = resources.filter(res => {
     const matchesSearch = res.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -47,11 +49,10 @@ export const ResourcesPage: React.FC = () => {
      useEffect(() => {
         const startTime = Date.now();
         return () => {
-            const date = new Date(); // now
+            const date = new Date();
             const endTime = date.getTime();
             const minutes = (endTime - startTime) / 60000;
-            if (minutes > 0.5) { // Record if spent > 30 seconds
-                console.log(`Recording ${minutes.toFixed(1)} minutes for ${resource.title}`);
+            if (minutes > 0.5) {
                 userService.recordActivity(Math.ceil(minutes));
             }
         };
@@ -200,6 +201,9 @@ export const ResourcesPage: React.FC = () => {
   };
 
   if (readingResource) {
+    if (readingResource.type === 'PDF') {
+        return <PDFReader resource={readingResource} onClose={() => setReadingResource(null)} />;
+    }
     return <ReaderOverlay resource={readingResource} onClose={() => setReadingResource(null)} />;
   }
 
@@ -226,68 +230,82 @@ export const ResourcesPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Filters */}
-      <div className="flex flex-col gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-        <div className="flex flex-col md:flex-row gap-4">
-          <div className="flex-1 space-y-2">
-            <label className="text-xs font-bold text-slate-500 uppercase flex items-center gap-1">
-               <Filter className="w-3 h-3" /> Subject
-            </label>
-            <select 
-              value={selectedSubject} 
-              onChange={(e) => { setSelectedSubject(e.target.value); setSelectedModule('all'); }}
-              className="w-full p-2 text-sm border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-brand-500"
-            >
-              <option value="all">All Subjects</option>
-              {subjects.map(sub => (
-                <option key={sub.id} value={sub.id}>{sub.name}</option>
-              ))}
-            </select>
-          </div>
-          
-          {activeSubject && (
-             <div className="flex-1 space-y-2 animate-in fade-in">
-               <label className="text-xs font-bold text-slate-500 uppercase flex items-center gap-1">
-                  <Layers className="w-3 h-3" /> Module
-               </label>
-               <select 
-                 value={selectedModule} 
-                 onChange={(e) => setSelectedModule(e.target.value)}
-                 className="w-full p-2 text-sm border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-brand-500"
-               >
-                 <option value="all">All Modules</option>
-                 {activeSubject.objectives.map(obj => (
-                   <option key={obj.id} value={obj.id}>{obj.id}</option>
-                 ))}
-               </select>
-             </div>
-          )}
-        </div>
+      {/* Collapsible Filters */}
+      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden transition-all duration-300">
+        <button 
+            onClick={() => setIsFiltersOpen(!isFiltersOpen)}
+            className="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition-colors"
+        >
+            <div className="flex items-center gap-2">
+                <Filter className="w-4 h-4 text-slate-400" />
+                <span className="text-sm font-bold text-slate-600 uppercase tracking-wide">Filters</span>
+            </div>
+            {isFiltersOpen ? <ChevronUp className="w-4 h-4 text-slate-400" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
+        </button>
+        
+        {isFiltersOpen && (
+            <div className="p-4 border-t border-slate-100 flex flex-col gap-4 animate-in slide-in-from-top-2">
+                <div className="flex flex-col md:flex-row gap-4">
+                <div className="flex-1 space-y-2">
+                    <label className="text-xs font-bold text-slate-500 uppercase flex items-center gap-1">
+                    Subject
+                    </label>
+                    <select 
+                    value={selectedSubject} 
+                    onChange={(e) => { setSelectedSubject(e.target.value); setSelectedModule('all'); }}
+                    className="w-full p-2 text-sm border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-brand-500"
+                    >
+                    <option value="all">All Subjects</option>
+                    {subjects.map(sub => (
+                        <option key={sub.id} value={sub.id}>{sub.name}</option>
+                    ))}
+                    </select>
+                </div>
+                
+                <div className={`flex-1 space-y-2 transition-all ${activeSubject ? 'opacity-100' : 'opacity-50 pointer-events-none'}`}>
+                    <label className="text-xs font-bold text-slate-500 uppercase flex items-center gap-1">
+                        <Layers className="w-3 h-3" /> Module
+                    </label>
+                    <select 
+                        value={selectedModule} 
+                        onChange={(e) => setSelectedModule(e.target.value)}
+                        className="w-full p-2 text-sm border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-brand-500"
+                        disabled={!activeSubject}
+                    >
+                        <option value="all">All Modules</option>
+                        {activeSubject?.objectives.map(obj => (
+                        <option key={obj.id} value={obj.id}>{obj.id}</option>
+                        ))}
+                    </select>
+                </div>
+                </div>
 
-        <div className="space-y-2">
-           <label className="text-xs font-bold text-slate-500 uppercase">File Type</label>
-           <div className="flex flex-wrap gap-2">
-             {types.map(t => (
-               <button
-                 key={t}
-                 onClick={() => setSelectedType(t)}
-                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                   selectedType === t 
-                     ? 'bg-brand-600 text-white shadow-md' 
-                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                 }`}
-               >
-                 {t}
-               </button>
-             ))}
-           </div>
-        </div>
+                <div className="space-y-2">
+                <label className="text-xs font-bold text-slate-500 uppercase">File Type</label>
+                <div className="flex flex-wrap gap-2">
+                    {types.map(t => (
+                    <button
+                        key={t}
+                        onClick={() => setSelectedType(t)}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                        selectedType === t 
+                            ? 'bg-brand-600 text-white shadow-md' 
+                            : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
+                        }`}
+                    >
+                        {t}
+                    </button>
+                    ))}
+                </div>
+                </div>
+            </div>
+        )}
       </div>
 
       {/* Grid */}
       <div className="flex-1 overflow-y-auto">
         {filteredResources.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 pb-4">
             {filteredResources.map(res => (
               <ResourceCard 
                 key={res.id} 

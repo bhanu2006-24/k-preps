@@ -1,19 +1,19 @@
 
 import React, { useState, useEffect } from 'react';
 import { Plus, Trash2, CheckCircle, Circle, Calculator, CheckSquare, StickyNote, Save, Edit3, Timer as TimerIcon, Play, Pause, RotateCcw, Equal, X as XIcon, Hash, ChevronRight } from 'lucide-react';
-import { TodoItem, NoteItem } from '../../types';
+import { TodoItem, NoteItem } from '../types';
 
 export const ToolsPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'CGPA' | 'TODO' | 'NOTES' | 'POMO' | 'CALC'>('POMO');
 
   return (
-    <div className="h-full flex flex-col space-y-8 max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 pb-20">
+    <div className="h-full flex flex-col space-y-8 w-full max-w-7xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 pb-20 px-4">
       <div className="text-center">
-        <h1 className="text-4xl font-display font-black text-slate-900 tracking-tight">Productivity Toolkit</h1>
-        <p className="text-slate-500 mt-2">Tools designed to keep you on top of your game.</p>
+        <h1 className="text-3xl md:text-4xl font-display font-black text-slate-900 tracking-tight">Productivity Toolkit</h1>
+        <p className="text-slate-500 mt-2 text-sm md:text-base">Tools designed to keep you on top of your game.</p>
       </div>
 
-      <div className="bg-slate-100/50 p-2 rounded-[2rem] flex w-full max-w-xl mx-auto overflow-x-auto gap-2 backdrop-blur-md border border-slate-200/50">
+      <div className="bg-slate-100/50 p-2 rounded-[2rem] flex w-full max-w-2xl mx-auto overflow-x-auto gap-2 backdrop-blur-md border border-slate-200/50 no-scrollbar">
         {(['POMO', 'CALC', 'TODO', 'NOTES', 'CGPA'] as const).map(tab => (
            <button
              key={tab}
@@ -29,7 +29,7 @@ export const ToolsPage: React.FC = () => {
         ))}
       </div>
 
-      <div className="flex-1 flex justify-center overflow-y-auto pt-4">
+      <div className="flex-1 flex justify-center w-full overflow-y-auto pt-4 pb-20">
         {activeTab === 'CGPA' && <CGPACalculator />}
         {activeTab === 'TODO' && <TodoList />}
         {activeTab === 'NOTES' && <NotesApp />}

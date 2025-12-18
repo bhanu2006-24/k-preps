@@ -21,6 +21,8 @@ import { networkCheatsheets } from './cheatsheets/networkCheatsheets';
 import { deviceCheatsheets } from './cheatsheets/deviceCheatsheets';
 import { miscResources } from './miscResources';
 import { fileResources } from './fileResources';
+import { mathQuestions, signalQuestions, programmingQuestions, commQuestions } from './questions/generatedQuestions';
+import { generatedFlashcards } from './flashcards/generatedFlashcards';
 
 export const subjects = [
   networkTheory, 
@@ -43,5 +45,16 @@ export const resources: Resource[] = [
   ...miscResources,
   ...fileResources
 ];
-export const flashcards: Flashcard[] = [...networkFlashcards, ...deviceFlashcards];
-export const questions = [...networkQuestions, ...deviceQuestions];
+export const flashcards: Flashcard[] = [
+    ...networkFlashcards, 
+    ...deviceFlashcards,
+    ...generatedFlashcards
+];
+export const questions = [
+    ...networkQuestions, 
+    ...deviceQuestions,
+    ...mathQuestions,
+    ...signalQuestions,
+    ...programmingQuestions,
+    ...commQuestions
+];
