@@ -1,8 +1,9 @@
 
 import React, { useState, useMemo } from 'react';
 import { RotateCw, ChevronLeft, ChevronRight, Brain, Check, HelpCircle, AlertCircle, X, Trophy, Timer, Settings2, Play, Info } from 'lucide-react';
-import { flashcards, questions, subjects } from '../../data/index';
-import { Question, Subject, Flashcard, QuizAttempt } from '../../types';
+import { flashcards, questions, subjects } from '../data/index';
+import { Question, Subject, Flashcard, QuizAttempt } from '../types';
+import { userService } from '../services/userService';
 
 type Mode = 'MENU' | 'SETUP_QUIZ' | 'SETUP_FLASH' | 'GAME_QUIZ' | 'GAME_FLASH';
 
@@ -380,6 +381,12 @@ const QuizMode: React.FC<{ subjectId: string; moduleId: string; difficulty: stri
       setShowResult(false);
     } else {
       setQuizFinished(true);
+      // Update User Stats
+      const score = attempts.filter(a => a.isCorrect).length;
+      if (score / quizQuestions.length >= 0.5) {
+          const current = userService.getStats();
+          userService.updateStats({ modulesCompleted: current.modulesCompleted + 1 });
+      }
     }
   };
 
